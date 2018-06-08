@@ -1,0 +1,13 @@
+<ul class="controls">
+  <li *ngFor="let control of controls">
+    <a routerLink="/detail/{{control.id}}" title="{{control.familyName}}">
+      <span class="badge">{{control.id}}: {{control.familyNumber}}</span> {{control.title}}
+    </a>
+  </li>
+</ul>
+
+<ul class="controls">
+  <li *ngFor="let control of controls" (click)="onSelect(control)" [class.selected]="hero === selectedHero">
+    <span class="badge" title="{{control.familyName}}">{{control.familyNumber}}</span> {{control.title}}
+  </li>
+</ul>

@@ -1,0 +1,60 @@
+table {
+  position: relative;
+  display: table;
+  width: 100%;
+}
+
+tr {
+  display: table-row;
+}
+
+td,
+th {
+  border: 1px solid lightgray;
+  display: table-cell;
+  padding: 5px;
+  text-align: left;
+  width: relative;
+}
+
+td.empty {
+  border: none;
+  width: 100px;
+}
+
+td.rowspanned {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+}
+
+li {
+  list-style: none;
+  padding: 10px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.expand-block {
+  display: block;
+  background: aqua;
+  color: black;
+  margin: 2px;
+}
+
+.expand-block:hover {
+  display: block;
+  background: aqua;
+  color: black;
+  margin: 2px;
+}
+
+.expanded-block {
+  display: block;
+  background: lightblue;
+  margin: 2px;
+}

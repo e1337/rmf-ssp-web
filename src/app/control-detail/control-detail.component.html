@@ -1,0 +1,140 @@
+<div *ngIf="control">
+  <table>
+    <tr>
+      <th>Priority</th>
+      <th>Control Number</th>
+      <th>Control Name</th>
+    </tr>
+    <tr>
+      <td>{{control.priority}}</td>
+      <td>{{control.familyNumber}}</td>
+      <td>{{control.familyName}}</td>
+    </tr>
+    <tr>
+      <th>Title</th>
+      <td colspan="2">{{control.title}}</td>
+    </tr>
+    <tr *ngIf="control.withdrawn && control.withdrawn.length > 0">
+      <td>Withdrawn</td>
+      <td colspan="2"> IncorporatedInto:
+        <span *ngFor="let withdrawn of control.withdrawn">{{withdrawn.incorporatedInto}}; </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Controls</td>
+      <td colspan="2">
+        <table *ngFor="let statement of control.statementStructureList">
+          <tr>
+            <td colspan="3"> {{statement.description}}</td>
+          </tr>
+          <tr *ngFor="let statementSub of statement.statementSubStructures">
+            <td>{{statementSub.number}}</td>
+            <td>{{statementSub.description}}
+              <table>
+                <tr *ngFor="let statementSubSub of statementSub.statementsSubSub">
+                  <td>{{statementSubSub.number}}</td>
+                  <td>{{statementSubSub.description}}</td>
+                </tr>
+              </table>
+          </tr>
+        </table>
+        </td>
+    </tr>
+
+
+    <tr *ngIf="control.supplementalGuidanceStructure.supplementalGuidance  ">
+      <td>Supplemental Guidance</td>
+      <td colspan="2">
+        <div>{{control.supplementalGuidanceStructure.supplementalGuidance.description}}</div>
+        <div>Related Controls:
+          <span *ngFor="let rc of control.supplementalGuidanceStructure.relatedControls"> {{rc}}, </span>
+        </div>
+      </td>
+    </tr>
+
+
+    <tr *ngIf="control.references && control.references.length>0">
+      <td>References</td>
+      <td colspan="2">
+        <div *ngFor="let ref of control.references">
+          <a href="{{ref.link}}">{{ref.description}}</a>
+        </div>
+      </td>
+    </tr>
+
+
+    <tr *ngIf="control.baselineImpacts && control.baselineImpacts.length>0">
+      <td>Baseline Impacts</td>
+      <td colspan="2">
+        <div *ngFor="let bi of control.baselineImpacts">{{bi}}</div>
+      </td>
+    </tr>
+
+
+
+
+
+
+    <tr *ngIf="control.controlEnhancementStructures && control.controlEnhancementStructures.length > 0">
+      <td>Control Enhancements</td>
+      <td colspan="2">
+
+        <ul>
+          <div *ngFor="let ce of control.controlEnhancementStructures">
+            <details class="expanded-block">
+              <summary class="expand-block">
+                <span>{{ce.familyNumber}} - {{ce.title}}</span>
+              </summary>
+              <table *ngFor="let ceStatement of ce.statementStructureList">
+                <tr *ngIf="ce.withdrawnList && ce.withdrawnList.length > 0">
+                  <td>Withdrawn</td>
+                  <td colspan="2"> IncorporatedInto:
+                    <span *ngFor="let ceinc of ce.withdrawnList">{{ceinc.incorporatedInto}}; </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3"> {{ceStatement.description}}</td>
+                </tr>
+                <tr *ngFor="let ceStatementSub of ceStatement.statementSubStructures">
+                  <td>{{ceStatementSub.number}}</td>
+                  <td>{{ceStatementSub.description}}
+                    <table>
+                      <tr *ngFor="let ceStatementSubSub of ceStatementSub.statementsSubSub">
+                        <td>{{ceStatementSubSub.number}}</td>
+                        <td>{{ceStatementSubSub.description}}</td>
+                      </tr>
+                    </table>
+                </tr>
+                <tr *ngFor="let sg of ce.supplementalGuidanceStructureList">
+                  <td>Supplemental Guidance</td>
+                  <td>
+                    <div>{{sg.supplementalGuidance.description}}</div>
+                    <br/>
+                    <div *ngIf="sg.relatedControls && sg.relatedControls.length > 0">Related Controls:
+                      <span *ngFor="let rc of sg.relatedControls"> {{rc}}; </span>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="ce.baselineImpactsLists && ce.baselineImpactsLists.length > 0">
+                  <td>Baseline Impacts</td>
+                  <td colspan="2">
+                    <div *ngFor="let cebi of ce.baselineImpactsLists">{{cebi}}</div>
+                  </td>
+                </tr>
+              </table>
+            </details>
+          </div>
+        </ul>
+
+
+        </td>
+
+    </tr>
+
+  </table>
+
+
+</div>
+
+<button (click)="goBack()">go back</button>

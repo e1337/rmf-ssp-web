@@ -1,0 +1,16 @@
+<div class="header-top">
+  <h1> {{ title }}</h1>
+</div>
+
+<div class="main-content">
+  <div class="main-top-nav">
+    <nav>
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/controls">Controls</a>
+    </nav>
+  </div>
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
+  <app-system></app-system>
+</div>
+<div class="footer-bottom"></div>

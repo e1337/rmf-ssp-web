@@ -1,0 +1,7 @@
+<div class="grid grid-pad">
+  <a *ngFor="let control of controls" class="col-1-4" routerLink="/detail/{{control.id}}">
+    <div class=" module control ">
+      <h4>{{control.familyNumber}}</h4>
+    </div>
+  </a>
+</div>
