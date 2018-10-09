@@ -1,13 +1,19 @@
-<ul class="controls">
-  <li *ngFor="let control of controls">
+<div style="">
+  <div *ngFor="let controlGroup of controls | groupby: 'familyName' " style="display: inline-block;vertical-align: top;border: 1px solid lightblue">
+    <b>{{controlGroup.key}} </b>
+    <ul class="controls">
+      <li *ngFor="let control of controlGroup.value">
+        <a routerLink="/detail/{{control.id}}" title="{{control.familyName}}">
+          <span class="badge">{{control.familyNumber}}</span> {{control.title}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- <ul class="controls">
+  <li *ngFor="let control of controls  ">
     <a routerLink="/detail/{{control.id}}" title="{{control.familyName}}">
       <span class="badge">{{control.id}}: {{control.familyNumber}}</span> {{control.title}}
     </a>
   </li>
-</ul>
-
-<ul class="controls">
-  <li *ngFor="let control of controls" (click)="onSelect(control)" [class.selected]="hero === selectedHero">
-    <span class="badge" title="{{control.familyName}}">{{control.familyNumber}}</span> {{control.title}}
-  </li>
-</ul>
+</ul> -->
